@@ -1,25 +1,27 @@
 
-
 public class PivotIndex {
-    public static int pivotIndex(int[] nums) {
-        int totalSum = 0;
-        for (int num : nums) {
-            totalSum += num;
-        }
 
-        int leftSum = 0;
+    public static int pivotIndex(int[] nums) {
+        int total = 0;
         for (int i = 0; i < nums.length; i++) {
-            int rightSum = totalSum - leftSum - nums[i];
-            if (leftSum == rightSum) {
+            total += nums[i];
+        }
+        int left = 0;
+        for (int i = 0; i < nums.length; i++) {
+            int right = total - left - nums[i];
+
+            if (left == right)
                 return i;
-            }
-            leftSum += nums[i];
+
+            left += nums[i];
+
         }
 
         return -1;
     }
+
     public static void main(String[] args) {
-        int[] nums = {1, 7, 3, 6, 5, 6};
+        int[] nums = { 1, 7, 3, 8, 5, 6 };
 
         int result = pivotIndex(nums);
 
